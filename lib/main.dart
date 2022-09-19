@@ -139,7 +139,7 @@ class Idea extends StatelessWidget {
               argument.deleteIdea(argument.indexIdea);
               Navigator.of(context).pop();
             },
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
           ),
         ],
         title: Text(argument.valueIdea),
