@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 void main() {
   runApp(
     MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.orange),
+      theme: ThemeData(primarySwatch: Colors.purple),
       debugShowCheckedModeBanner: false,
       routes: {
         '/': (context) => const Home(),
@@ -75,7 +75,7 @@ class _HomeState extends State<Home> {
               textCapitalization: TextCapitalization.sentences,
               controller: _inputController,
               decoration: const InputDecoration(
-                hintText: 'Ваша идея',
+                hintText: 'Ваша гениальная идея',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(10),
@@ -150,7 +150,7 @@ class Idea extends StatelessWidget {
           child: TextField(
             controller: TextEditingController(text: argument.valueIdea),
             decoration: const InputDecoration(
-              labelText: "Редактирование идеи",
+              labelText: "Измени идею!",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
