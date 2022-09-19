@@ -1,4 +1,4 @@
-#Mon Sep 19 21:45:20 MSK 2022
+#Mon Sep 19 22:14:42 MSK 2022
 base.0=D\:\\StudioProjects\\flutter_6_idia\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
