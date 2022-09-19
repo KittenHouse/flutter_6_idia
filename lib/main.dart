@@ -18,11 +18,12 @@ class InformationIdea {
   String valueIdea;
   int indexIdea;
   Function editedIdea;
-
+  Function deleteIdea;
   InformationIdea({
     required this.valueIdea,
     required this.indexIdea,
     required this.editedIdea,
+    required this.deleteIdea,
   });
 }
 
@@ -30,7 +31,6 @@ class Home extends StatefulWidget {
   const Home({
     Key? key,
   }) : super(key: key);
-
   @override
   State<Home> createState() => _HomeState();
 }
@@ -38,7 +38,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<String> listIdeas = [];
   final _inputController = TextEditingController();
-
   void addIdea(String idea) {
     setState(() {
       if (!listIdeas.contains(_inputController.text)) {
@@ -51,6 +50,14 @@ class _HomeState extends State<Home> {
   void editedIdea(String newIdea, int indexIdea) {
     setState(() {
       listIdeas[indexIdea] = newIdea;
+    });
+  }
+
+  void deleteIdea(int indexIdea) {
+    setState(() {
+      listIdeas.remove(
+        listIdeas.elementAt(indexIdea),
+      );
     });
   }
 
@@ -100,6 +107,7 @@ class _HomeState extends State<Home> {
                               valueIdea: listIdeas.elementAt(index),
                               indexIdea: index,
                               editedIdea: editedIdea,
+                              deleteIdea: deleteIdea,
                             ),
                           );
                         },
@@ -119,14 +127,21 @@ class _HomeState extends State<Home> {
 
 class Idea extends StatelessWidget {
   const Idea({super.key});
-
   @override
   Widget build(BuildContext context) {
     var argument =
         ModalRoute.of(context)?.settings.arguments as InformationIdea;
-
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              argument.deleteIdea(argument.indexIdea);
+              Navigator.of(context).pop();
+            },
+            icon: Icon(Icons.delete),
+          ),
+        ],
         title: Text(argument.valueIdea),
       ),
       body: Padding(
@@ -135,6 +150,7 @@ class Idea extends StatelessWidget {
           child: TextField(
             controller: TextEditingController(text: argument.valueIdea),
             decoration: const InputDecoration(
+              labelText: "Редактирование идеи",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
